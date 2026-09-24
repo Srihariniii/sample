@@ -1,9 +1,13 @@
 class Solution {
     public int smallestIndex(int[] nums) {
 
+        int s = 0;
+        boolean f = false;
+        int min = 0;
+
         for (int i = 0; i < nums.length; i++) {
 
-            int s = 0;
+            s = 0;
             int n = nums[i];
 
             while (n > 0) {
@@ -13,10 +17,20 @@ class Solution {
             }
 
             if (i == s) {
-                return i;
+
+                if (!f) {
+                    min = i;
+                    f = true;
+                } else {
+                    min = Math.min(min, i);
+                }
             }
         }
 
-        return -1;
+        if (f) {
+            return min;
+        } else {
+            return -1;
+        }
     }
 }
